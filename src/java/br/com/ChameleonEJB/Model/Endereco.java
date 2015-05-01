@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ChameleonEJB.Model;
 
 import java.io.Serializable;
@@ -14,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,6 +18,14 @@ import javax.persistence.Table;
  *
  * @author Gustavo Assalin
  */
+@NamedQueries({
+    @NamedQuery(name = "Endereco.All", query = "SELECT e FROM ArkEndereco e"),
+    @NamedQuery(name = "Endereco.WhereIdEquals", query = "SELECT e FROM ArkEndereco e WHERE e.id = :id"),
+    @NamedQuery(name = "Endereco.AllWhereCEPEquals", query = "SELECT e FROM ArkEndereco e WHERE e.cep = :cep"),
+    @NamedQuery(name = "Endereco.AllWherePatioLike", query = "SELECT e FROM ArkEndereco e WHERE e.logradouro LIKE :logradouro"),
+    @NamedQuery(name = "Endereco.AllCostumersOrderById", query = "SELECT e FROM ArkEndereco e ORDER BY e.cliente.id"),
+    @NamedQuery(name = "Endereco.AllWhereCostumersId", query = "SELECT e FROM ArkEndereco e WHERE e.cliente.id = :id")
+})
 @Entity
 @SequenceGenerator(
         name = "ENDERECO_SEQ",
@@ -54,6 +59,9 @@ public class Endereco implements Serializable {
     private String cep;
     @Column(length = 250)
     private String complemento;
+
+    public Endereco() {
+    }
 
     public Long getId() {
         return id;
