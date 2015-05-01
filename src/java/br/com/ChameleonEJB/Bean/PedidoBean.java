@@ -2,72 +2,50 @@ package br.com.ChameleonEJB.Bean;
 
 import br.com.ChameleonEJB.DAO.PedidoDAO;
 import br.com.ChameleonEJB.Model.Pedido;
-import br.com.ChameleonEJB.Remote.PedidoRemote;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author Gustavo Assalin
- */
 @Stateless
-public class PedidoBean implements PedidoRemote {
+public class PedidoBean extends PedidoDAO {
 
-    private final PedidoDAO pedidoDAO = new PedidoDAO();
-    
-    @Override
     public Pedido save(Pedido pedido) throws Exception {
-        return pedidoDAO.save(pedido);
+        return save(pedido);
     }
 
-    @Override
     public Pedido getById(Long id) {
-        return pedidoDAO.getById(id);
+        return getById(id);
     }
 
-    @Override
     public void remove(Long id) {
-        pedidoDAO.desactivate(id);
+        desactivate(id);
     }
-    
-    @Override
+
     public List<Pedido> allOrderByQuantityDesc() {
-        return pedidoDAO.allOrderByQuantidadeDesc();
+        return allOrderByQuantityDesc();
     }
-    
-    @Override
+
     public List<Pedido> allOrderByQuantity() {
-        return pedidoDAO.allOrderByQuantidade();
+        return allOrderByQuantity();
     }
-    
-    @Override
+
     public List<Pedido> allOrderByPriceDesc() {
-        return pedidoDAO.allOrderByValorDesc();
+        return allOrderByPriceDesc();
     }
-    
-    @Override
+
     public List<Pedido> allOrderByPrice() {
-        return pedidoDAO.allOrderByValor();
+        return allOrderByPrice();
     }
 
-    @Override
     public List<Pedido> all() {
-        return pedidoDAO.all();
+        return all();
     }
 
-    @Override
     public List<Pedido> allWherePriceEquals(BigDecimal valor) {
-        return pedidoDAO.allWherePriceEquals(valor);
+        return allWherePriceEquals(valor);
     }
 
-    @Override
     public List<Pedido> allWherePriceBetween(BigDecimal valorInicio, BigDecimal valorFim) {
-        return pedidoDAO.allWherePriceBetween(valorInicio, valorFim);
-    }
-
-    @Override
-    public Pedido pedidoWhereIdEquals(Long id) {
-        return pedidoDAO.pedidoWhereIdEquals(id);
+        return allWherePriceBetween(valorInicio, valorFim);
     }
 }

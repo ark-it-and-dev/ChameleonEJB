@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ChameleonEJB.Model;
 
 import br.com.ChameleonEJB.Enum.SexoClientePF;
@@ -16,19 +11,17 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author Gustavo Assalin
- */
-//@NamedQueries({
-//    @NamedQuery(name = "", query = "")
-//})
+@NamedQueries({
+    @NamedQuery(name = "ClientePF.getByEmail", query = "SELECT c FROM ArkClientePF c WHERE c.email = :email")
+})
 @Entity
 @SequenceGenerator(
         name = "CLIPF_SEQ",
@@ -38,8 +31,9 @@ import javax.persistence.TemporalType;
 )
 @Table(name = "ArkClientePF")
 public class ClientePF implements Serializable {
+
     private static final long serialVersionUID = -7385857933604370621L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLIPF_SEQ")
     private Long id;

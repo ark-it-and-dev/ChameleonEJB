@@ -14,16 +14,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-/**
- *
- * @author Gustavo Assalin
- */
 @NamedQueries({
     @NamedQuery(name = "Endereco.All", query = "SELECT e FROM ArkEndereco e"),
-    @NamedQuery(name = "Endereco.WhereIdEquals", query = "SELECT e FROM ArkEndereco e WHERE e.id = :id"),
     @NamedQuery(name = "Endereco.AllWhereCEPEquals", query = "SELECT e FROM ArkEndereco e WHERE e.cep = :cep"),
     @NamedQuery(name = "Endereco.AllWherePatioLike", query = "SELECT e FROM ArkEndereco e WHERE e.logradouro LIKE :logradouro"),
-    @NamedQuery(name = "Endereco.AllCostumersOrderById", query = "SELECT e FROM ArkEndereco e ORDER BY e.cliente.id"),
+    @NamedQuery(name = "Endereco.AllOrderByCostumerId", query = "SELECT e FROM ArkEndereco e ORDER BY e.cliente.id"),
     @NamedQuery(name = "Endereco.AllWhereCostumersId", query = "SELECT e FROM ArkEndereco e WHERE e.cliente.id = :id")
 })
 @Entity
@@ -35,8 +30,9 @@ import javax.persistence.Table;
 )
 @Table(name = "ArkEndereco")
 public class Endereco implements Serializable {
+
     private static final long serialVersionUID = 3627412169215683626L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ENDERECO_SEQ")
     private Long id;

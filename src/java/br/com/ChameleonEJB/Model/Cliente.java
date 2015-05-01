@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ChameleonEJB.Model;
 
 import java.io.Serializable;
@@ -22,21 +17,18 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author Gustavo Assalin
- */
 @Entity
 @SequenceGenerator(
-    name = "CLIENTE_SEQ",
-    sequenceName = "ARKCLIENTE_SEQ",
-    initialValue = 1,
-    allocationSize = 1
+        name = "CLIENTE_SEQ",
+        sequenceName = "ARKCLIENTE_SEQ",
+        initialValue = 1,
+        allocationSize = 1
 )
 @Table(name = "ArkCliente")
 public class Cliente implements Serializable {
+
     private static final long serialVersionUID = -7292163756296624412L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLIENTE_SEQ")
     private Long id;
@@ -56,8 +48,10 @@ public class Cliente implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "ClienteEndereco",
-            joinColumns = {@JoinColumn(name = "Cliente_id")},
-            inverseJoinColumns = {@JoinColumn(name = "Endereco_id")}
+            joinColumns = {
+                @JoinColumn(name = "Cliente_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "Endereco_id")}
     )
     private List<Endereco> listaEndereco;
 

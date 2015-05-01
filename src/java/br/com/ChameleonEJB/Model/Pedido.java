@@ -34,9 +34,7 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "Pedido.AllOrderByPriceDesc", query = "SELECT p FROM ArkPedido p ORDER BY p.preco DESC"),
     @NamedQuery(name = "Pedido.AllOrderByPrice", query = "SELECT p FROM ArkPedido p ORDER BY p.preco"),
     @NamedQuery(name = "Pedido.AllWherePriceEquals", query = "SELECT p FROM ArkPedido p WHERE p.preco = :valor"),
-    @NamedQuery(name = "Pedido.AllWherePriceBetween", query = "SELECT p FROM ArkPedido p WHERE p.preco > :valorInicio AND p.preco < :valorFim"),
-    @NamedQuery(name = "Pedido.PedidoWhereIdEquals", query = "SELECT p FROM ArkPedido p WHERE p.id = :id")
-})
+    @NamedQuery(name = "Pedido.AllWherePriceBetween", query = "SELECT p FROM ArkPedido p WHERE p.preco > :valorInicio AND p.preco < :valorFim"),})
 @Entity
 @SequenceGenerator(
         name = "PED_SEQ",
@@ -46,8 +44,9 @@ import javax.persistence.NamedQuery;
 )
 @Table(name = "ArkPedido")
 public class Pedido implements Serializable {
+
     private static final long serialVersionUID = -7763197826912604296L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PED_SEQ")
     private Long id;
@@ -56,8 +55,10 @@ public class Pedido implements Serializable {
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "ArkPedidoProduto",
-            joinColumns = {@JoinColumn(name = "idPedido")},
-            inverseJoinColumns = {@JoinColumn(name = "idProduto")}
+            joinColumns = {
+                @JoinColumn(name = "idPedido")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "idProduto")}
     )
     private List<Produto> listaProduto;
     @ManyToOne

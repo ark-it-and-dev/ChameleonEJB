@@ -22,13 +22,12 @@ import javax.persistence.Table;
  */
 @NamedQueries({
     @NamedQuery(name = "Produto.All", query = "SELECT p FROM ArkProduto p"),
-    @NamedQuery(name = "Produto.AllOrderByPrecoDesc", query = "SELECT p FROM ArkProduto p ORDER BY p.preco DESC"),
-    @NamedQuery(name = "Produto.AllOrderByPreco", query = "SELECT p FROM ArkProduto p ORDER BY p.preco"),
+    @NamedQuery(name = "Produto.AllOrderByPriceDesc", query = "SELECT p FROM ArkProduto p ORDER BY p.preco DESC"),
+    @NamedQuery(name = "Produto.AllOrderByPrice", query = "SELECT p FROM ArkProduto p ORDER BY p.preco"),
     @NamedQuery(name = "Produto.AllWhereStatusD", query = "SELECT p FROM ArkProduto p WHERE p.status = 'D'"),
     @NamedQuery(name = "Produto.AllWhereStatusI", query = "SELECT p FROM ArkProduto p WHERE p.status = 'I'"),
     @NamedQuery(name = "Produto.AllWherePriceEquals", query = "SELECT p FROM ArkProduto p WHERE p.preco = :valor"),
-    @NamedQuery(name = "Produto.AllWherePriceBetween", query = "SELECT p FROM ArkProduto p WHERE p.preco > :valorInicio AND p.preco < :valorFim"),
-})
+    @NamedQuery(name = "Produto.AllWherePriceBetween", query = "SELECT p FROM ArkProduto p WHERE p.preco > :valorInicio AND p.preco < :valorFim"),})
 @Entity
 @SequenceGenerator(
         name = "PRODUTO_SEQ",
@@ -50,7 +49,7 @@ public class Produto implements Serializable {
     private Long quantidade;
     @Column(nullable = false)
     private BigDecimal preco;
-    @Column(length = 250)
+    @Column(length = 250, nullable = true)
     private String descricao;
     @Column(nullable = false, length = 20)
     private String marca;
