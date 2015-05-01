@@ -16,39 +16,38 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Gustavo Assalin
  */
-//Diz que a classe eh uma entidade
 @NamedQueries({
-    @NamedQuery(name = "Produto.OrderByPrecoDesc", query = "SELECT p FROM ArkProduto p ORDER BY p.preco DESC"),
-    @NamedQuery(name = "Produto.OrderByPreco", query = "SELECT p FROM ArkProduto p ORDER BY p.preco"),
-    @NamedQuery(name = "Produto.WhereStatusD", query = "SELECT p FROM ArkProduto p WHERE p.status = 'D'"),
-    @NamedQuery(name = "Produto.WhereStatusI", query = "SELECT p FROM ArkProduto p WHERE p.status = 'I'")
+    @NamedQuery(name = "Produto.All", query = "SELECT p FROM ArkProduto p"),
+    @NamedQuery(name = "Produto.AllOrderByPrecoDesc", query = "SELECT p FROM ArkProduto p ORDER BY p.preco DESC"),
+    @NamedQuery(name = "Produto.AllOrderByPreco", query = "SELECT p FROM ArkProduto p ORDER BY p.preco"),
+    @NamedQuery(name = "Produto.AllWhereStatusD", query = "SELECT p FROM ArkProduto p WHERE p.status = 'D'"),
+    @NamedQuery(name = "Produto.AllWhereStatusI", query = "SELECT p FROM ArkProduto p WHERE p.status = 'I'"),
+    @NamedQuery(name = "Produto.AllWherePriceEquals", query = "SELECT p FROM ArkProduto p WHERE p.preco = :valor"),
+    @NamedQuery(name = "Produto.AllWherePriceBetween", query = "SELECT p FROM ArkProduto p WHERE p.preco > :valorInicio AND p.preco < :valorFim"),
 })
 @Entity
 @SequenceGenerator(
-        name = "PROD_SEQ",
+        name = "PRODUTO_SEQ",
         sequenceName = "ARKPRODUTO_SEQ",
         initialValue = 1,
         allocationSize = 1
 )
 @Table(name = "ArkProduto")
 public class Produto implements Serializable {
+
     private static final long serialVersionUID = 6342446145368898389L;
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROD_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUTO_SEQ")
     private Long id;
     @Column(nullable = false, length = 20)
     private String nome;
+    @Column(nullable = false)
+    private Long quantidade;
     @Column(nullable = false)
     private BigDecimal preco;
     @Column(length = 250)
@@ -61,6 +60,9 @@ public class Produto implements Serializable {
     @ManyToOne
     private Pedido pedido;
 
+    public Produto() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -71,6 +73,14 @@ public class Produto implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Long getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Long quantidade) {
+        this.quantidade = quantidade;
     }
 
     public BigDecimal getPreco() {
@@ -96,7 +106,7 @@ public class Produto implements Serializable {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-    
+
     public StatusProduto getStatus() {
         return status;
     }

@@ -9,6 +9,7 @@ import br.com.ChameleonEJB.DAO.ProdutoDAO;
 import br.com.ChameleonEJB.Enum.StatusProduto;
 import br.com.ChameleonEJB.Model.Produto;
 import br.com.ChameleonEJB.Remote.ProdutoRemote;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -37,17 +38,17 @@ public class ProdutoBean implements ProdutoRemote {
     }
     
     @Override
-    public void alterarStatus(Long id, StatusProduto statusProduto) {
+    public void changeStatus(Long id, StatusProduto statusProduto) {
         produtoDAO.changeStatus(id, statusProduto);
     }
     
     @Override
-    public List<Produto> allOrderByPrecoDesc() {
+    public List<Produto> allOrderByPriceDesc() {
         return produtoDAO.allOrderByPrecoDesc();
     }
     
     @Override
-    public List<Produto> allOrderByPreco() {
+    public List<Produto> allOrderByPrice() {
         return produtoDAO.allOrderByPreco();
     }
     
@@ -59,5 +60,15 @@ public class ProdutoBean implements ProdutoRemote {
     @Override
     public List<Produto> allWhereStatusI() {
         return produtoDAO.allWhereStatusI();
+    }
+
+    @Override
+    public List<Produto> allWherePriceEquals(BigDecimal valor) {
+        return produtoDAO.allWherePriceEquals(valor);
+    }
+
+    @Override
+    public List<Produto> allWherePriceBetween(BigDecimal valorInicio, BigDecimal valorFim) {
+        return produtoDAO.allWherePriceBetween(valorInicio, valorFim);
     }
 }

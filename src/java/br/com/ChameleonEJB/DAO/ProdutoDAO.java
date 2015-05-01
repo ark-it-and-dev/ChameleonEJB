@@ -7,6 +7,7 @@ package br.com.ChameleonEJB.DAO;
 
 import br.com.ChameleonEJB.Enum.StatusProduto;
 import br.com.ChameleonEJB.Model.Produto;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Query;
 
@@ -78,6 +79,21 @@ public class ProdutoDAO extends MasterDAO {
     
     public List<Produto> allWhereStatusI() {
         query = entityManager.createNamedQuery("Produto.WhereStatusI");
+        return query.getResultList();
+    }
+    
+    public List<Produto> allWherePriceEquals(BigDecimal valor) {
+        query = entityManager.createNamedQuery("Produto.AllWherePriceEquals");
+        query.setParameter(0, valor);
+        
+        return query.getResultList();
+    }
+    
+    public List<Produto> allWherePriceBetween(BigDecimal valorInicio, BigDecimal valorFim) {
+        query = entityManager.createNamedQuery("Produto.AllWherePriceBetween");
+        query.setParameter(0, valorInicio);
+        query.setParameter(1, valorFim);
+        
         return query.getResultList();
     }
 }
