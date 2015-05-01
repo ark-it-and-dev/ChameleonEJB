@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ChameleonEJB.Model;
 
 import javax.persistence.CascadeType;
@@ -24,6 +19,7 @@ import br.com.ChameleonEJB.Enum.StatusPedido;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -32,19 +28,16 @@ import javax.persistence.NamedQuery;
  * @author Gustavo Assalin
  */
 @NamedQueries({
-    @NamedQuery(name = "Pedido.OrderByQuantidadeDesc", query = ""),
-    @NamedQuery(name = "Pedido.OrderByQuantidade", query = ""),
-    @NamedQuery(name = "Pedido.OrderByValorDesc", query = ""),
-    @NamedQuery(name = "Pedido.OrderByValor", query = "")
+    @NamedQuery(name = "Pedido.All", query = "SELECT p FROM ArkPedido p"),
+    @NamedQuery(name = "Pedido.AllOrderByQuantityDesc", query = "SELECT p FROM ArkPedido p ORDER BY p.quantidade DESC"),
+    @NamedQuery(name = "Pedido.AllOrderByQuantity", query = "SELECT p FROM ArkPedido p ORDER BY p.quantidade"),
+    @NamedQuery(name = "Pedido.AllOrderByPriceDesc", query = "SELECT p FROM ArkPedido p ORDER BY p.preco DESC"),
+    @NamedQuery(name = "Pedido.AllOrderByPrice", query = "SELECT p FROM ArkPedido p ORDER BY p.preco"),
+    @NamedQuery(name = "Pedido.AllWherePriceEquals", query = "SELECT p FROM ArkPedido p WHERE p.preco = :valor"),
+    @NamedQuery(name = "Pedido.AllWherePriceBetween", query = "SELECT p FROM ArkPedido p WHERE p.preco > :valorInicio AND p.preco < :valorFim"),
+    @NamedQuery(name = "Pedido.PedidoWhereIdEquals", query = "SELECT p FROM ArkPedido p WHERE p.id = :id")
 })
 @Entity
-/* Anotacao usada para mapear qual a sequence que vai gerar seu id(
- * passando nome pra ela(name)
- * nome da sequence definida no oracle(sequenceName)
- * valor de inicio(initialValue)
- * valor de incremento(allocationSize)
- * )
- */
 @SequenceGenerator(
         name = "PED_SEQ",
         sequenceName = "ARKPEDIDO_SEQ",
@@ -59,30 +52,25 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PED_SEQ")
     private Long id;
     @Column(nullable = false)
-    private int quantidade;
-    @Column(nullable = false)
     private BigDecimal valorTotal;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "ArkPedidoProdido",
+            name = "ArkPedidoProduto",
             joinColumns = {@JoinColumn(name = "idPedido")},
             inverseJoinColumns = {@JoinColumn(name = "idProduto")}
     )
     private List<Produto> listaProduto;
+    @ManyToOne
+    private Cliente cliente;
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private StatusPedido statusPedido;
 
+    public Pedido() {
+    }
+
     public Long getId() {
         return id;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
     }
 
     public List<Produto> getListaProduto() {
@@ -91,6 +79,14 @@ public class Pedido implements Serializable {
 
     public void setListaProduto(List<Produto> listaProduto) {
         this.listaProduto = listaProduto;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public StatusPedido getStatusPedido() {

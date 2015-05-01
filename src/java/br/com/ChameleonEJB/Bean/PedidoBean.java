@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ChameleonEJB.Bean;
 
 import br.com.ChameleonEJB.DAO.PedidoDAO;
 import br.com.ChameleonEJB.Model.Pedido;
 import br.com.ChameleonEJB.Remote.PedidoRemote;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -36,22 +32,42 @@ public class PedidoBean implements PedidoRemote {
     }
     
     @Override
-    public List<Pedido> allOrderByQuantidadeDesc() {
+    public List<Pedido> allOrderByQuantityDesc() {
         return pedidoDAO.allOrderByQuantidadeDesc();
     }
     
     @Override
-    public List<Pedido> allOrderByQuantidade() {
+    public List<Pedido> allOrderByQuantity() {
         return pedidoDAO.allOrderByQuantidade();
     }
     
     @Override
-    public List<Pedido> allOrderByValorDesc() {
+    public List<Pedido> allOrderByPriceDesc() {
         return pedidoDAO.allOrderByValorDesc();
     }
     
     @Override
-    public List<Pedido> allOrderByValor() {
+    public List<Pedido> allOrderByPrice() {
         return pedidoDAO.allOrderByValor();
+    }
+
+    @Override
+    public List<Pedido> all() {
+        return pedidoDAO.all();
+    }
+
+    @Override
+    public List<Pedido> allWherePriceEquals(BigDecimal valor) {
+        return pedidoDAO.allWherePriceEquals(valor);
+    }
+
+    @Override
+    public List<Pedido> allWherePriceBetween(BigDecimal valorInicio, BigDecimal valorFim) {
+        return pedidoDAO.allWherePriceBetween(valorInicio, valorFim);
+    }
+
+    @Override
+    public Pedido pedidoWhereIdEquals(Long id) {
+        return pedidoDAO.pedidoWhereIdEquals(id);
     }
 }

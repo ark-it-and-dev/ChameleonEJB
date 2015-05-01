@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ChameleonEJB.DAO;
 
 import br.com.ChameleonEJB.Enum.StatusPedido;
 import br.com.ChameleonEJB.Model.Pedido;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Query;
 
@@ -77,6 +73,11 @@ public class PedidoDAO extends MasterDAO {
         }
     }
     
+    public List<Pedido> all() {
+        query = entityManager.createNamedQuery("Pedido.All");
+        return query.getResultList();
+    }
+    
     public List<Pedido> allOrderByQuantidadeDesc() {
         query = entityManager.createNamedQuery("Pedido.OrderByQuantidadeDesc");
         return query.getResultList();
@@ -95,5 +96,27 @@ public class PedidoDAO extends MasterDAO {
     public List<Pedido> allOrderByValor() {
         query = entityManager.createNamedQuery("Pedido.OrderByValorDesc");
         return query.getResultList();
+    }
+    
+    public List<Pedido> allWherePriceEquals(BigDecimal valor) {
+        query = entityManager.createNamedQuery("Pedido.AllWherePriceEquals");
+        query.setParameter(0, valor);
+        
+        return query.getResultList();
+    }
+    
+    public List<Pedido> allWherePriceBetween(BigDecimal valorInicio, BigDecimal valorFim) {
+        query = entityManager.createNamedQuery("Pedido.AllWherePriceBetween");
+        query.setParameter(0, valorInicio);
+        query.setParameter(1, valorFim);
+        
+        return query.getResultList();
+    }
+    
+    public Pedido pedidoWhereIdEquals(Long id) {
+        query = entityManager.createNamedQuery("Pedido.PedidoWhereIdEquals");
+        query.setParameter(0, id);
+        
+        return (Pedido)query.getSingleResult();
     }
 }
