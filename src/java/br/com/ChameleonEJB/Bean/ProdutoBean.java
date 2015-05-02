@@ -9,7 +9,7 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class ProdutoBean extends ProdutoDAO {
-
+/*
     public Produto save(Produto produto) throws Exception {
         return save(produto);
     }
@@ -48,5 +48,5 @@ public class ProdutoBean extends ProdutoDAO {
 
     public List<Produto> allWherePriceBetween(BigDecimal valorInicio, BigDecimal valorFim) {
         return allWherePriceBetween(valorInicio, valorFim);
-    }
+    }*/
 }

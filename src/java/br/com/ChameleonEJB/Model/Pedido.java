@@ -28,13 +28,13 @@ import javax.persistence.NamedQuery;
  * @author Gustavo Assalin
  */
 @NamedQueries({
-    @NamedQuery(name = "Pedido.All", query = "SELECT p FROM ArkPedido p"),
-    @NamedQuery(name = "Pedido.AllOrderByQuantityDesc", query = "SELECT p FROM ArkPedido p ORDER BY p.quantidade DESC"),
-    @NamedQuery(name = "Pedido.AllOrderByQuantity", query = "SELECT p FROM ArkPedido p ORDER BY p.quantidade"),
-    @NamedQuery(name = "Pedido.AllOrderByPriceDesc", query = "SELECT p FROM ArkPedido p ORDER BY p.preco DESC"),
-    @NamedQuery(name = "Pedido.AllOrderByPrice", query = "SELECT p FROM ArkPedido p ORDER BY p.preco"),
-    @NamedQuery(name = "Pedido.AllWherePriceEquals", query = "SELECT p FROM ArkPedido p WHERE p.preco = :valor"),
-    @NamedQuery(name = "Pedido.AllWherePriceBetween", query = "SELECT p FROM ArkPedido p WHERE p.preco > :valorInicio AND p.preco < :valorFim"),})
+    @NamedQuery(name = "Pedido.All", query = "SELECT p FROM Pedido p"),
+    @NamedQuery(name = "Pedido.AllOrderByQuantityDesc", query = "SELECT p FROM Pedido p ORDER BY p.quantidade DESC"),
+    @NamedQuery(name = "Pedido.AllOrderByQuantity", query = "SELECT p FROM Pedido p ORDER BY p.quantidade"),
+    @NamedQuery(name = "Pedido.AllOrderByPriceDesc", query = "SELECT p FROM Pedido p ORDER BY p.valorTotal DESC"),
+    @NamedQuery(name = "Pedido.AllOrderByPrice", query = "SELECT p FROM Pedido p ORDER BY p.valorTotal"),
+    @NamedQuery(name = "Pedido.AllWherePriceEquals", query = "SELECT p FROM Pedido p WHERE p.valorTotal = :valor"),
+    @NamedQuery(name = "Pedido.AllWherePriceBetween", query = "SELECT p FROM Pedido p WHERE p.valorTotal > :valorInicio AND p.valorTotal < :valorFim"),})
 @Entity
 @SequenceGenerator(
         name = "PED_SEQ",
@@ -50,6 +50,8 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PED_SEQ")
     private Long id;
+    @Column(nullable = false)
+    private BigDecimal quantidade;
     @Column(nullable = false)
     private BigDecimal valorTotal;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -100,6 +102,14 @@ public class Pedido implements Serializable {
 
     public BigDecimal getValorTotal() {
         return valorTotal;
+    }
+
+    public void setQuantidade(BigDecimal quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public BigDecimal getQuantidade() {
+        return quantidade;
     }
 
     public void setValorTotal(BigDecimal valorTotal) {

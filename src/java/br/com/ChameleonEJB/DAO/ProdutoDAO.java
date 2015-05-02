@@ -29,7 +29,7 @@ public class ProdutoDAO extends BaseDao<Produto> implements ProdutoRemote {
         try {
             save(p);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            ex.getMessage();
         }
     }
 
@@ -47,13 +47,15 @@ public class ProdutoDAO extends BaseDao<Produto> implements ProdutoRemote {
 
     @Override
     public List<Produto> allWhereStatusD() {
-        query = entityManager.createNamedQuery("Produto.WhereStatusD");
+        query = entityManager.createNamedQuery("Produto.WhereStatusEquals");
+        query.setParameter(0, "D");
         return query.getResultList();
     }
 
     @Override
     public List<Produto> allWhereStatusI() {
-        query = entityManager.createNamedQuery("Produto.WhereStatusI");
+        query = entityManager.createNamedQuery("Produto.WhereStatusEquals");
+        query.setParameter(0, "I");
         return query.getResultList();
     }
 

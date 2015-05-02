@@ -8,7 +8,7 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class PedidoBean extends PedidoDAO {
-
+/*
     public Pedido save(Pedido pedido) throws Exception {
         return save(pedido);
     }
@@ -47,5 +47,5 @@ public class PedidoBean extends PedidoDAO {
 
     public List<Pedido> allWherePriceBetween(BigDecimal valorInicio, BigDecimal valorFim) {
         return allWherePriceBetween(valorInicio, valorFim);
-    }
+    }*/
 }

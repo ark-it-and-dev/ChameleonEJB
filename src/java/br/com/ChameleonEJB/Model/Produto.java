@@ -16,18 +16,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-/**
- *
- * @author Gustavo Assalin
- */
 @NamedQueries({
-    @NamedQuery(name = "Produto.All", query = "SELECT p FROM ArkProduto p"),
-    @NamedQuery(name = "Produto.AllOrderByPriceDesc", query = "SELECT p FROM ArkProduto p ORDER BY p.preco DESC"),
-    @NamedQuery(name = "Produto.AllOrderByPrice", query = "SELECT p FROM ArkProduto p ORDER BY p.preco"),
-    @NamedQuery(name = "Produto.AllWhereStatusD", query = "SELECT p FROM ArkProduto p WHERE p.status = 'D'"),
-    @NamedQuery(name = "Produto.AllWhereStatusI", query = "SELECT p FROM ArkProduto p WHERE p.status = 'I'"),
-    @NamedQuery(name = "Produto.AllWherePriceEquals", query = "SELECT p FROM ArkProduto p WHERE p.preco = :valor"),
-    @NamedQuery(name = "Produto.AllWherePriceBetween", query = "SELECT p FROM ArkProduto p WHERE p.preco > :valorInicio AND p.preco < :valorFim"),})
+    @NamedQuery(name = "Produto.All", query = "SELECT p FROM Produto p"),
+    @NamedQuery(name = "Produto.AllOrderByPriceDesc", query = "SELECT p FROM Produto p ORDER BY p.preco DESC"),
+    @NamedQuery(name = "Produto.AllOrderByPrice", query = "SELECT p FROM Produto p ORDER BY p.preco"),
+    @NamedQuery(name = "Produto.AllWhereStatusEquals", query = "SELECT p FROM Produto p WHERE p.status = :status"),
+    @NamedQuery(name = "Produto.AllWherePriceEquals", query = "SELECT p FROM Produto p WHERE p.preco = :valor"),
+    @NamedQuery(name = "Produto.AllWherePriceBetween", query = "SELECT p FROM Produto p WHERE p.preco > :valorInicio AND p.preco < :valorFim"),})
 @Entity
 @SequenceGenerator(
         name = "PRODUTO_SEQ",

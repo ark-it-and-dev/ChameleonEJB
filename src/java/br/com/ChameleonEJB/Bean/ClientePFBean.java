@@ -6,12 +6,12 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class ClientePFBean extends ClientePFDAO {
-
+/*
     public ClientePF save(ClientePF clientePF) throws Exception {
         return save(clientePF);
     }
 
     public ClientePF getById(Long id) {
         return getById(id);
-    }
+    }*/
 }

@@ -1,7 +1,6 @@
 package br.com.ChameleonEJB.Model;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @NamedQueries({
-    @NamedQuery(name = "ClientePJ.getByEmail", query = "SELECT c FROM ArkClientePJ c WHERE c.email = :email")
+    @NamedQuery(name = "ClientePJ.getByEmail", query = "SELECT c FROM ClientePJ c WHERE c.email = :email")
 })
 @Entity
 @SequenceGenerator(
@@ -24,7 +22,7 @@ import javax.persistence.Table;
         allocationSize = 1
 )
 @Table(name = "ArkClientePJ")
-public class ClientePJ implements Serializable {
+public class ClientePJ extends Cliente implements Serializable {
 
     private static final long serialVersionUID = 8054825981197088179L;
 
@@ -37,8 +35,6 @@ public class ClientePJ implements Serializable {
     private String razaoSocial;
     @Column(nullable = false, length = 15)
     private String inscEstadual;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Cliente Cliente;
 
     public Long getId() {
         return id;
@@ -66,13 +62,5 @@ public class ClientePJ implements Serializable {
 
     public void setInscEstadual(String inscEstadual) {
         this.inscEstadual = inscEstadual;
-    }
-
-    public Cliente getCliente() {
-        return Cliente;
-    }
-
-    public void setCliente(Cliente Cliente) {
-        this.Cliente = Cliente;
     }
 }

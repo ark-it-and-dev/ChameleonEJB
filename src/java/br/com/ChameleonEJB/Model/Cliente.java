@@ -1,37 +1,16 @@
 package br.com.ChameleonEJB.Model;
 
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@SequenceGenerator(
-        name = "CLIENTE_SEQ",
-        sequenceName = "ARKCLIENTE_SEQ",
-        initialValue = 1,
-        allocationSize = 1
-)
-@Table(name = "ArkCliente")
-public class Cliente implements Serializable {
+@MappedSuperclass
+public abstract class Cliente {
 
-    private static final long serialVersionUID = -7292163756296624412L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLIENTE_SEQ")
-    private Long id;
     @Column(nullable = false, length = 50)
     private String nome;
     @Column(nullable = false, length = 50)
@@ -42,9 +21,6 @@ public class Cliente implements Serializable {
     private String telefone1;
     @Column(length = 15)
     private String telefone2;
-    @Temporal(TemporalType.DATE)
-    @Column(name = "DT_NASCIMENTO", nullable = false)
-    private Date nascimento;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "ClienteEndereco",
@@ -54,10 +30,6 @@ public class Cliente implements Serializable {
                 @JoinColumn(name = "Endereco_id")}
     )
     private List<Endereco> listaEndereco;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getNome() {
         return nome;
@@ -97,14 +69,6 @@ public class Cliente implements Serializable {
 
     public void setTelefone2(String telefone2) {
         this.telefone2 = telefone2;
-    }
-
-    public Date getNascimento() {
-        return nascimento;
-    }
-
-    public void setNascimento(Date nascimento) {
-        this.nascimento = nascimento;
     }
 
     public List<Endereco> getListaEndereco() {

@@ -41,7 +41,7 @@ public class PedidoDAO extends BaseDao<Pedido> implements PedidoRemote {
         try {
             save(pedido);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            ex.getMessage();
         }
     }
 

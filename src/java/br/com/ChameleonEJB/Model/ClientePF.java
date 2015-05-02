@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @NamedQueries({
-    @NamedQuery(name = "ClientePF.getByEmail", query = "SELECT c FROM ArkClientePF c WHERE c.email = :email")
+    @NamedQuery(name = "ClientePF.getByEmail", query = "SELECT c FROM ClientePF c WHERE c.email = :email")
 })
 @Entity
 @SequenceGenerator(
@@ -30,7 +30,7 @@ import javax.persistence.TemporalType;
         allocationSize = 1
 )
 @Table(name = "ArkClientePF")
-public class ClientePF implements Serializable {
+public class ClientePF extends Cliente implements Serializable {
 
     private static final long serialVersionUID = -7385857933604370621L;
 
@@ -42,8 +42,9 @@ public class ClientePF implements Serializable {
     @Column(nullable = false, length = 9)
     @Enumerated(EnumType.STRING)
     private SexoClientePF sexo;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Cliente Cliente;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "DT_NASCIMENTO", nullable = false)
+    private Date nascimento;
 
     public Long getId() {
         return id;
@@ -65,11 +66,11 @@ public class ClientePF implements Serializable {
         this.sexo = sexo;
     }
 
-    public Cliente getCliente() {
-        return Cliente;
+    public Date getNascimento() {
+        return nascimento;
     }
 
-    public void setCliente(Cliente Cliente) {
-        this.Cliente = Cliente;
+    public void setNascimento(Date nascimento) {
+        this.nascimento = nascimento;
     }
 }

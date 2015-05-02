@@ -1,6 +1,5 @@
 package br.com.ChameleonEJB.DAO;
 
-import br.com.ChameleonEJB.Enum.StatusProduto;
 import br.com.ChameleonEJB.Model.ClientePJ;
 import br.com.ChameleonEJB.Remote.ClientePJRemote;
 import javax.persistence.Query;
@@ -19,5 +18,4 @@ public class ClientePJDAO extends BaseDao<ClientePJ> implements ClientePJRemote 
         query.setParameter(0, email);
         return (ClientePJ) query.getSingleResult();
     }
-
 }

@@ -6,7 +6,7 @@ import br.com.ChameleonEJB.Model.Endereco;
 import java.util.List;
 
 public class EnderecoBean extends EnderecoDAO {
-
+/*
     public Endereco save(Endereco endereco) throws Exception {
         return save(endereco);
     }
@@ -29,5 +29,5 @@ public class EnderecoBean extends EnderecoDAO {
 
     public List<Cliente> allCostumersOrderById() {
         return allCostumersOrderById();
-    }
+    }*/
 }

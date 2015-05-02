@@ -15,12 +15,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @NamedQueries({
-    @NamedQuery(name = "Endereco.All", query = "SELECT e FROM ArkEndereco e"),
-    @NamedQuery(name = "Endereco.AllWhereCEPEquals", query = "SELECT e FROM ArkEndereco e WHERE e.cep = :cep"),
-    @NamedQuery(name = "Endereco.AllWherePatioLike", query = "SELECT e FROM ArkEndereco e WHERE e.logradouro LIKE :logradouro"),
-    @NamedQuery(name = "Endereco.AllOrderByCostumerId", query = "SELECT e FROM ArkEndereco e ORDER BY e.cliente.id"),
-    @NamedQuery(name = "Endereco.AllWhereCostumersId", query = "SELECT e FROM ArkEndereco e WHERE e.cliente.id = :id")
-})
+    @NamedQuery(name = "Endereco.All", query = "SELECT e FROM Endereco e"),
+    @NamedQuery(name = "Endereco.AllWhereCEPEquals", query = "SELECT e FROM Endereco e WHERE e.cep = :cep"),
+    @NamedQuery(name = "Endereco.AllWherePatioLike", query = "SELECT e FROM Endereco e WHERE e.logradouro LIKE :logradouro"),})
 @Entity
 @SequenceGenerator(
         name = "ENDERECO_SEQ",
