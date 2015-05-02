@@ -23,10 +23,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-/**
- *
- * @author Gustavo Assalin
- */
 @NamedQueries({
     @NamedQuery(name = "Pedido.All", query = "SELECT p FROM Pedido p"),
     @NamedQuery(name = "Pedido.AllOrderByQuantityDesc", query = "SELECT p FROM Pedido p ORDER BY p.quantidade DESC"),
