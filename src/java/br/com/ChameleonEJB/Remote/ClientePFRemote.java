@@ -4,7 +4,7 @@ import br.com.ChameleonEJB.Model.ClientePF;
 import javax.ejb.Remote;
 
 @Remote
-public interface ClientePFRemote extends BaseRemote {
+public interface ClientePFRemote {
 
     public ClientePF getByEmail(String email);
 }
