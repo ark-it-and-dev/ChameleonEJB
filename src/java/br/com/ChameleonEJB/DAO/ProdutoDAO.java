@@ -5,8 +5,10 @@ import br.com.ChameleonEJB.Model.Produto;
 import br.com.ChameleonEJB.Remote.ProdutoRemote;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
+@Stateless
 public class ProdutoDAO extends BaseDao<Produto> implements ProdutoRemote {
 
     private Query query;

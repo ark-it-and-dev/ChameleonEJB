@@ -2,8 +2,10 @@ package br.com.ChameleonEJB.DAO;
 
 import br.com.ChameleonEJB.Model.ClientePF;
 import br.com.ChameleonEJB.Remote.ClientePFRemote;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
+@Stateless
 public class ClientePFDAO extends BaseDao<ClientePF> implements ClientePFRemote {
 
     private Query query;

@@ -5,8 +5,10 @@ import br.com.ChameleonEJB.Model.Pedido;
 import br.com.ChameleonEJB.Remote.PedidoRemote;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
+@Stateless
 public class PedidoDAO extends BaseDao<Pedido> implements PedidoRemote {
 
     private Query query;

@@ -4,8 +4,10 @@ import br.com.ChameleonEJB.Model.Cliente;
 import br.com.ChameleonEJB.Model.Endereco;
 import br.com.ChameleonEJB.Remote.EnderecoRemote;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
+@Stateless
 public class EnderecoDAO extends BaseDao<Endereco> implements EnderecoRemote {
 
     private Query query;
