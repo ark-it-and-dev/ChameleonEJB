@@ -60,18 +60,6 @@ public class PedidoDAO extends BaseDao<Pedido> implements PedidoRemote {
     }
 
     @Override
-    public List<Pedido> allOrderByQuantityDesc() {
-        query = entityManager.createNamedQuery("Pedido.OrderByQuantidadeDesc");
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Pedido> allOrderByQuantity() {
-        query = entityManager.createNamedQuery("Pedido.OrderByQuantidade");
-        return query.getResultList();
-    }
-
-    @Override
     public List<Pedido> allOrderByPriceDesc() {
         query = entityManager.createNamedQuery("Pedido.OrderByPriceDesc");
         return query.getResultList();

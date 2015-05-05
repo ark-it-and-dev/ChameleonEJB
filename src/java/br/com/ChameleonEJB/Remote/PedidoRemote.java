@@ -12,10 +12,6 @@ public interface PedidoRemote {
 
     public List<Pedido> all();
 
-    public List<Pedido> allOrderByQuantityDesc();
-
-    public List<Pedido> allOrderByQuantity();
-
     public List<Pedido> allOrderByPriceDesc();
 
     public List<Pedido> allOrderByPrice();
