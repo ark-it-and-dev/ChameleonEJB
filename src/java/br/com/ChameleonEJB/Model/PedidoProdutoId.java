@@ -18,16 +18,7 @@ public class PedidoProdutoId implements Serializable {
         return idPedido;
     }
 
-    public void setIdPedido(Long idPedido) {
-        this.idPedido = idPedido;
-    }
-
     public Long getIdProduto() {
         return idProduto;
     }
-
-    public void setIdProduto(Long idProduto) {
-        this.idProduto = idProduto;
-    }
-
 }

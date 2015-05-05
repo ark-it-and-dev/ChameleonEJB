@@ -21,6 +21,7 @@ import java.util.List;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @NamedQueries({
     @NamedQuery(name = "Pedido.All", query = "SELECT p FROM Pedido p"),
@@ -51,7 +52,7 @@ public class Pedido implements Serializable {
     private BigDecimal valorTotal;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PedidoProduto> listaPedidoProduto;
-    @JoinColumn(name = "idCliente", referencedColumnName = "id")
+    @PrimaryKeyJoinColumn(name = "idCliente", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Cliente cliente;
     @Enumerated(EnumType.STRING)

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class PedidoProduto implements Serializable {
@@ -13,11 +14,11 @@ public class PedidoProduto implements Serializable {
     private static final long serialVersionUID = 638029348368802485L;
 
     @EmbeddedId
-    private PedidoProduto id;
-    @JoinColumn(name = "idPedido", referencedColumnName = "id")
+    private PedidoProdutoId id;
+    @PrimaryKeyJoinColumn(name = "idPedido", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Pedido pedido;
-    @JoinColumn(name = "idProduto", referencedColumnName = "id")
+    @PrimaryKeyJoinColumn(name = "idProduto", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Produto produto;
 
@@ -31,11 +32,11 @@ public class PedidoProduto implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public PedidoProduto getId() {
+    public PedidoProdutoId getId() {
         return id;
     }
 
-    public void setId(PedidoProduto id) {
+    public void setId(PedidoProdutoId id) {
         this.id = id;
     }
 

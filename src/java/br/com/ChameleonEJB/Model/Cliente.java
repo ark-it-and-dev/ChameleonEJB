@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -61,6 +63,8 @@ public class Cliente implements Serializable {
                 @JoinColumn(name = "idEndereco", referencedColumnName = "id")}
     )
     private List<Endereco> listaEndereco;
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
+    private List<Pedido> listaPedido;
 
     //dados do cliente pf
     @Column(length = 14)
@@ -79,6 +83,9 @@ public class Cliente implements Serializable {
     private String razaoSocial;
     @Column(length = 15)
     private String inscEstadual;
+
+    public Cliente() {
+    }
 
     //Criação de um cliente PF
     public Cliente(Long id, String nome, String email, String senha, String telefone1, String cpf, SexoClientePF sexo, Date nascimento) {
@@ -206,6 +213,14 @@ public class Cliente implements Serializable {
 
     public void setInscEstadual(String inscEstadual) {
         this.inscEstadual = inscEstadual;
+    }
+
+    public List<Pedido> getListaPedido() {
+        return listaPedido;
+    }
+
+    public void setListaPedido(List<Pedido> listaPedido) {
+        this.listaPedido = listaPedido;
     }
 
 }
