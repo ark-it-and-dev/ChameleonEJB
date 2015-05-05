@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -51,15 +50,9 @@ public class Pedido implements Serializable {
     @Column(nullable = false)
     private BigDecimal valorTotal;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "ArkPedidoProduto",
-            joinColumns = {
-                @JoinColumn(name = "idPedido")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "idProduto")}
-    )
-    private List<Produto> listaProduto;
-    @ManyToOne
+    private List<PedidoProduto> listaPedidoProduto;
+    @JoinColumn(name = "idCliente", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Cliente cliente;
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
@@ -70,14 +63,6 @@ public class Pedido implements Serializable {
 
     public Long getId() {
         return id;
-    }
-
-    public List<Produto> getListaProduto() {
-        return listaProduto;
-    }
-
-    public void setListaProduto(List<Produto> listaProduto) {
-        this.listaProduto = listaProduto;
     }
 
     public Cliente getCliente() {
@@ -110,5 +95,13 @@ public class Pedido implements Serializable {
 
     public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public List<PedidoProduto> getListaPedidoProduto() {
+        return listaPedidoProduto;
+    }
+
+    public void setListaPedidoProduto(List<PedidoProduto> listaPedidoProduto) {
+        this.listaPedidoProduto = listaPedidoProduto;
     }
 }

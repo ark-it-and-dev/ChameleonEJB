@@ -13,14 +13,17 @@ public class ProdutoDAO extends BaseDao<Produto> implements ProdutoRemote {
 
     private Query query;
 
+    @Override
     public Produto save(Produto produto) throws Exception {
         return save(produto, produto.getId());
     }
 
+    @Override
     public void activate(Long id) {
         changeStatus(id, StatusProduto.D);
     }
 
+    @Override
     public void desactivate(Long id) {
         changeStatus(id, StatusProduto.I);
     }

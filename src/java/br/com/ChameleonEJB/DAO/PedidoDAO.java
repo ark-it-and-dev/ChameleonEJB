@@ -13,26 +13,32 @@ public class PedidoDAO extends BaseDao<Pedido> implements PedidoRemote {
 
     private Query query;
 
+    @Override
     public Pedido save(Pedido pedido) throws Exception {
         return save(pedido, pedido.getId());
     }
 
+    @Override
     public void activate(Long id) {
         changeStatus(id, StatusPedido.N); //Novo
     }
 
+    @Override
     public void desactivate(Long id) {
         changeStatus(id, StatusPedido.C); //Cancelado
     }
 
+    @Override
     public void send(Long id) {
         changeStatus(id, StatusPedido.E); //Enviado Para Cliente
     }
 
+    @Override
     public void receive(Long id) {
         changeStatus(id, StatusPedido.R); //Receber Pedido(CLIENTE)
     }
 
+    @Override
     public void wait(Long id) {
         changeStatus(id, StatusPedido.A); //Aguardar Confirmacao de Pagamento
     }

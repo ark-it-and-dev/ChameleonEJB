@@ -3,16 +3,20 @@ package br.com.ChameleonEJB.Model;
 import br.com.ChameleonEJB.Enum.StatusProduto;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -51,8 +55,8 @@ public class Produto implements Serializable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusProduto status;
-    @ManyToOne
-    private Pedido pedido;
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<PedidoProduto> listaPedidoProduto;
 
     public Produto() {
     }
@@ -109,11 +113,12 @@ public class Produto implements Serializable {
         this.status = status;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public List<PedidoProduto> getListaPedidoProduto() {
+        return listaPedidoProduto;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public void setListaPedidoProduto(List<PedidoProduto> listaPedidoProduto) {
+        this.listaPedidoProduto = listaPedidoProduto;
     }
+
 }

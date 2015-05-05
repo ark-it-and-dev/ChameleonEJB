@@ -35,7 +35,7 @@ public class Endereco implements Serializable {
     private Long id;
     @ManyToMany(
             mappedBy = "listaEndereco",
-            cascade = CascadeType.ALL
+            cascade = CascadeType.PERSIST
     )
     private List<Cliente> listaCliente;
     @Column(nullable = false, length = 50)
