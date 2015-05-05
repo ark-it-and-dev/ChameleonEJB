@@ -5,9 +5,9 @@ import javax.ejb.Remote;
 @Remote
 public interface BaseRemote<T> {
 
-    void add(T obj);
+    public void add(T obj);
 
-    T update(T obj);
+    public T update(T obj);
 
-    T getById(Long id);    
+    public T getById(Long id);
 }

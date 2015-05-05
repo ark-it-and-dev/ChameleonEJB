@@ -4,9 +4,15 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+@NamedQueries({
+    @NamedQuery(name = "PedidoProduto.Update", query = "SELECT p.quantidade FROM PedidoProduto p WHERE p.pedido.id = :idPedido AND p.produto.id = :idProduto"),
+    @NamedQuery(name = "PedidoProduto.getQuantity", query = "SELECT p.quantidade FROM PedidoProduto p WHERE p.pedido.id = :idPedido AND p.produto.id = :idProduto")
+})
 
 @Entity
 public class PedidoProduto implements Serializable {
@@ -59,4 +65,10 @@ public class PedidoProduto implements Serializable {
     public PedidoProduto() {
     }
 
+    public PedidoProduto(PedidoProdutoId id, Pedido pedido, Produto produto, int quantidade) {
+        this.id = id;
+        this.pedido = pedido;
+        this.produto = produto;
+        this.quantidade = quantidade;
+    }
 }

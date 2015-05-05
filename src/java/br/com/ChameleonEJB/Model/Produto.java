@@ -25,7 +25,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Produto.AllOrderByPrice", query = "SELECT p FROM Produto p ORDER BY p.preco"),
     @NamedQuery(name = "Produto.AllWhereStatusEquals", query = "SELECT p FROM Produto p WHERE p.status = :status"),
     @NamedQuery(name = "Produto.AllWherePriceEquals", query = "SELECT p FROM Produto p WHERE p.preco = :valor"),
-    @NamedQuery(name = "Produto.AllWherePriceBetween", query = "SELECT p FROM Produto p WHERE p.preco > :valorInicio AND p.preco < :valorFim"),})
+    @NamedQuery(name = "Produto.AllWherePriceBetween", query = "SELECT p FROM Produto p WHERE p.preco > :valorInicio AND p.preco < :valorFim")})
 @Entity
 @SequenceGenerator(
         name = "PRODUTO_SEQ",

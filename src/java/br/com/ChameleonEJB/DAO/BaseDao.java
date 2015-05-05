@@ -23,7 +23,7 @@ public class BaseDao<T> implements BaseRemote {
         } else {
             if (!entityManager.contains(obj)) {
                 if (getById(id) == null) {
-                    throw new Exception("Erro ao atualizar os dados do produto!");
+                    throw new Exception("Erro ao atualizar os dados!");
                 }
             }
             obj = (T) update(obj);
