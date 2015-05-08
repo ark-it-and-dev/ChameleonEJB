@@ -45,7 +45,7 @@ public class PedidoDAO extends BaseDao<Pedido> implements PedidoRemote {
 
     private void changeStatus(Long id, StatusPedido statusPedido) {
         Pedido pedido = getById(id);
-        pedido.setStatusPedido(statusPedido);
+        pedido.setStatus(statusPedido);
         try {
             save(pedido);
         } catch (Exception ex) {

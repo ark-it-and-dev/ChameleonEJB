@@ -11,6 +11,8 @@ public interface ProdutoRemote {
     public Produto save(Produto p) throws Exception;
 
     public List<Produto> allOrderByPriceDesc();
+    
+    public List<Produto> all();
 
     public List<Produto> allOrderByPrice();
 

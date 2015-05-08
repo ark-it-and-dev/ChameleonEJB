@@ -29,11 +29,11 @@ import javax.persistence.Table;
 @Entity
 @SequenceGenerator(
         name = "PRODUTO_SEQ",
-        sequenceName = "ARKPRODUTO_SEQ",
+        sequenceName = "PRODUTO_SEQ",
         initialValue = 1,
         allocationSize = 1
 )
-@Table(name = "ArkProduto")
+@Table
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 6342446145368898389L;
@@ -43,8 +43,6 @@ public class Produto implements Serializable {
     private Long id;
     @Column(nullable = false, length = 20)
     private String nome;
-    @Column(nullable = false)
-    private Long quantidade;
     @Column(nullable = false)
     private BigDecimal preco;
     @Column(length = 250, nullable = true)
@@ -70,14 +68,6 @@ public class Produto implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Long getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(Long quantidade) {
-        this.quantidade = quantidade;
     }
 
     public BigDecimal getPreco() {
@@ -119,5 +109,4 @@ public class Produto implements Serializable {
     public void setListaPedidoProduto(List<PedidoProduto> listaPedidoProduto) {
         this.listaPedidoProduto = listaPedidoProduto;
     }
-
 }

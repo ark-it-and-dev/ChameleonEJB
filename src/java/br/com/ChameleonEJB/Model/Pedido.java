@@ -30,18 +30,18 @@ import javax.persistence.PrimaryKeyJoinColumn;
     @NamedQuery(name = "Pedido.AllWherePriceBetween", query = "SELECT p FROM Pedido p WHERE p.valorTotal > :valorInicio AND p.valorTotal < :valorFim"),})
 @Entity
 @SequenceGenerator(
-        name = "PED_SEQ",
-        sequenceName = "ARKPEDIDO_SEQ",
+        name = "PEDIDO_SEQ",
+        sequenceName = "PEDIDO_SEQ",
         initialValue = 1,
         allocationSize = 1
 )
-@Table(name = "ArkPedido")
+@Table
 public class Pedido implements Serializable {
 
     private static final long serialVersionUID = -7763197826912604296L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PED_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PEDIDO_SEQ")
     private Long id;
     @Column(nullable = false)
     private BigDecimal valorTotal;
@@ -51,8 +51,8 @@ public class Pedido implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Cliente cliente;
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    private StatusPedido statusPedido;
+    @Column(nullable = false)
+    private StatusPedido status;
 
     public Pedido() {
     }
@@ -69,12 +69,12 @@ public class Pedido implements Serializable {
         this.cliente = cliente;
     }
 
-    public StatusPedido getStatusPedido() {
-        return statusPedido;
+    public StatusPedido getStatus() {
+        return status;
     }
 
-    public void setStatusPedido(StatusPedido statusPedido) {
-        this.statusPedido = statusPedido;
+    public void setStatus(StatusPedido status) {
+        this.status = status;
     }
 
     public BigDecimal getValorTotal() {

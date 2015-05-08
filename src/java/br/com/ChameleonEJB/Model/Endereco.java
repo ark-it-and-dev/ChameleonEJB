@@ -21,11 +21,11 @@ import javax.persistence.Table;
 @Entity
 @SequenceGenerator(
         name = "ENDERECO_SEQ",
-        sequenceName = "ARKENDERECO_SEQ",
+        sequenceName = "ENDERECO_SEQ",
         initialValue = 1,
         allocationSize = 1
 )
-@Table(name = "ArkEndereco")
+@Table
 public class Endereco implements Serializable {
 
     private static final long serialVersionUID = 3627412169215683626L;

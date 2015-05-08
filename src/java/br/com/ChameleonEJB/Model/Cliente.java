@@ -30,18 +30,18 @@ import javax.persistence.TemporalType;
 
 @Entity
 @SequenceGenerator(
-        name = "CLI_SEQ",
-        sequenceName = "ARKCLIENTE_SEQ",
+        name = "CLIENTE_SEQ",
+        sequenceName = "CLIENTE_SEQ",
         initialValue = 1,
         allocationSize = 1
 )
-@Table(name = "ArkCliente")
+@Table
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 8054825981197088179L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLI_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLIENTE_SEQ")
     @Column(nullable = false)
     private Long id;
     @Column(nullable = false, length = 50)
@@ -56,11 +56,11 @@ public class Cliente implements Serializable {
     private String telefone2;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "ArkClienteEndereco",
+            name = "CLIENTEENDERECO",
             joinColumns = {
-                @JoinColumn(name = "idCliente", referencedColumnName = "id")},
+                @JoinColumn(name = "IDCLIENTE", referencedColumnName = "id")},
             inverseJoinColumns = {
-                @JoinColumn(name = "idEndereco", referencedColumnName = "id")}
+                @JoinColumn(name = "IDENDERECO", referencedColumnName = "id")}
     )
     private List<Endereco> listaEndereco;
     @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)

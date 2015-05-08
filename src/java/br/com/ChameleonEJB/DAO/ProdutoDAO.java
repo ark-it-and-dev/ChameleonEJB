@@ -40,27 +40,27 @@ public class ProdutoDAO extends BaseDao<Produto> implements ProdutoRemote {
 
     @Override
     public List<Produto> allOrderByPriceDesc() {
-        query = entityManager.createNamedQuery("Produto.OrderByPriceDesc");
+        query = entityManager.createNamedQuery("Produto.AllOrderByPriceDesc");
         return query.getResultList();
     }
 
     @Override
     public List<Produto> allOrderByPrice() {
-        query = entityManager.createNamedQuery("Produto.OrderByPrice");
+        query = entityManager.createNamedQuery("Produto.AllOrderByPrice");
         return query.getResultList();
     }
 
     @Override
     public List<Produto> allWhereStatusD() {
-        query = entityManager.createNamedQuery("Produto.WhereStatusEquals");
-        query.setParameter(0, "D");
+        query = entityManager.createNamedQuery("Produto.AllWhereStatusEquals");
+        query.setParameter(0, StatusProduto.D);
         return query.getResultList();
     }
 
     @Override
     public List<Produto> allWhereStatusI() {
-        query = entityManager.createNamedQuery("Produto.WhereStatusEquals");
-        query.setParameter(0, "I");
+        query = entityManager.createNamedQuery("Produto.AllWhereStatusEquals");
+        query.setParameter(0, StatusProduto.I);
         return query.getResultList();
     }
 
@@ -76,6 +76,12 @@ public class ProdutoDAO extends BaseDao<Produto> implements ProdutoRemote {
         query = entityManager.createNamedQuery("Produto.AllWherePriceBetween");
         query.setParameter(0, valorInicio);
         query.setParameter(1, valorFim);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Produto> all() {
+        query = entityManager.createNamedQuery("Produto.All");
         return query.getResultList();
     }
 }

@@ -10,8 +10,6 @@ import javax.persistence.Query;
 public class PedidoProdutoDAO extends BaseDao<PedidoProduto> implements PedidoProdutoRemote {
 
     private Query query;
-    private final ProdutoDAO prodDAO = new ProdutoDAO();
-    private final PedidoDAO pedDAO = new PedidoDAO();
 
     @Override
     public int getQuantity(Long idPedido, Long idProduto) {
