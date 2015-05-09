@@ -26,14 +26,14 @@ import javax.persistence.Table;
     @NamedQuery(name = "Produto.AllWhereStatusEquals", query = "SELECT p FROM Produto p WHERE p.status = :status"),
     @NamedQuery(name = "Produto.AllWherePriceEquals", query = "SELECT p FROM Produto p WHERE p.preco = :valor"),
     @NamedQuery(name = "Produto.AllWherePriceBetween", query = "SELECT p FROM Produto p WHERE p.preco > :valorInicio AND p.preco < :valorFim")})
-@Entity
+
 @SequenceGenerator(
         name = "PRODUTO_SEQ",
         sequenceName = "PRODUTO_SEQ",
         initialValue = 1,
         allocationSize = 1
 )
-@Table
+@Entity
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 6342446145368898389L;

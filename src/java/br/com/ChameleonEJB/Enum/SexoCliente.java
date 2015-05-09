@@ -1,12 +1,9 @@
 package br.com.ChameleonEJB.Enum;
 
-public enum StatusPedido {
+public enum SexoCliente {
 
-    N("Novo"),
-    A("Aguardando pagamento"),
-    E("Enviado"),
-    R("Recebido"),
-    C("Cancelado");
+    M("Masculino"),
+    F("Feminino");
 
     private final String label;
 
@@ -14,7 +11,7 @@ public enum StatusPedido {
         return label;
     }
 
-    private StatusPedido(String descricao) {
+    private SexoCliente(String descricao) {
         this.label = descricao;
     }
 }

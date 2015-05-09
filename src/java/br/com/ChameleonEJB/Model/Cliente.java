@@ -1,6 +1,6 @@
 package br.com.ChameleonEJB.Model;
 
-import br.com.ChameleonEJB.Enum.SexoClientePF;
+import br.com.ChameleonEJB.Enum.SexoCliente;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -35,7 +34,6 @@ import javax.persistence.TemporalType;
         initialValue = 1,
         allocationSize = 1
 )
-@Table
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 8054825981197088179L;
@@ -71,7 +69,7 @@ public class Cliente implements Serializable {
     private String cpf;
     @Column(length = 9)
     @Enumerated(EnumType.STRING)
-    private SexoClientePF sexo;
+    private SexoCliente sexo;
     @Temporal(TemporalType.DATE)
     @Column(name = "DT_NASCIMENTO")
     private Date nascimento;
@@ -88,7 +86,7 @@ public class Cliente implements Serializable {
     }
 
     //Criação de um cliente PF
-    public Cliente(Long id, String nome, String email, String senha, String telefone1, String cpf, SexoClientePF sexo, Date nascimento) {
+    public Cliente(Long id, String nome, String email, String senha, String telefone1, String cpf, SexoCliente sexo, Date nascimento) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -175,11 +173,11 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
-    public SexoClientePF getSexo() {
+    public SexoCliente getSexo() {
         return sexo;
     }
 
-    public void setSexo(SexoClientePF sexo) {
+    public void setSexo(SexoCliente sexo) {
         this.sexo = sexo;
     }
 

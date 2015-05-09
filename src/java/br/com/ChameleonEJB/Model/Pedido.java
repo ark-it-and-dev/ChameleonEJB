@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 import br.com.ChameleonEJB.Enum.StatusPedido;
 import java.io.Serializable;
@@ -35,7 +34,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
         initialValue = 1,
         allocationSize = 1
 )
-@Table
 public class Pedido implements Serializable {
 
     private static final long serialVersionUID = -7763197826912604296L;
