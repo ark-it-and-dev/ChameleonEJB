@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @NamedQueries({
-    @NamedQuery(name = "Cliente.getByEmail", query = "SELECT c FROM Cliente c WHERE c.email = :email")
+    @NamedQuery(name = "Cliente.getByEmail", query = "SELECT c FROM Cliente c WHERE c.email =:mail")
 })
 
 @Entity
