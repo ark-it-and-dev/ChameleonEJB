@@ -70,8 +70,7 @@ public class Cliente implements Serializable {
     @Column(length = 9)
     @Enumerated(EnumType.STRING)
     private SexoCliente sexo;
-    @Temporal(TemporalType.DATE)
-    @Column(name = "DT_NASCIMENTO")
+    @Temporal(TemporalType.DATE)    
     private Date nascimento;
 
     //dados do cliente pj

@@ -18,7 +18,7 @@ public class ClienteDAO extends BaseDao<Cliente> implements ClienteRemote {
     @Override
     public Cliente getByEmail(String email) {
         query = entityManager.createNamedQuery("Cliente.getByEmail");
-        query.setParameter(0, email);
+        query.setParameter("mail", email);
         return (Cliente) query.getSingleResult();
     }
 }
