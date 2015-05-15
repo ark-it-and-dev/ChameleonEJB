@@ -6,7 +6,9 @@ import javax.ejb.Remote;
 @Remote
 public interface ClienteRemote {
 
-    public Cliente save(Cliente cliente) throws Exception;
-
     public Cliente getByEmail(String email);
+
+    public Cliente save(Long id) throws Exception;
+
+    public Cliente getById(Long id);
 }

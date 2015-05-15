@@ -2,7 +2,6 @@ package br.com.ChameleonEJB.Model;
 
 import br.com.ChameleonEJB.Enum.StatusProduto;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +16,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @NamedQueries({
     @NamedQuery(name = "Produto.All", query = "SELECT p FROM Produto p"),
@@ -39,17 +37,17 @@ public class Produto implements Serializable {
     private static final long serialVersionUID = 6342446145368898389L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUTO_SEQ")
-    private Long id;
-    @Column(nullable = false, length = 20)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUTO_SEQ")
+    private String id;
+
     private String nome;
-    @Column(nullable = false)
-    private BigDecimal preco;
-    @Column(length = 250, nullable = true)
+
+    private String preco;
+
     private String descricao;
-    @Column(nullable = false, length = 20)
+
     private String marca;
-    @Column(nullable = false)
+
     @Enumerated(EnumType.STRING)
     private StatusProduto status;
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -58,7 +56,7 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -70,11 +68,11 @@ public class Produto implements Serializable {
         this.nome = nome;
     }
 
-    public BigDecimal getPreco() {
+    public String getPreco() {
         return preco;
     }
 
-    public void setPreco(BigDecimal preco) {
+    public void setPreco(String preco) {
         this.preco = preco;
     }
 

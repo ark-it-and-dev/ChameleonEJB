@@ -15,7 +15,17 @@ public class ProdutoDAO extends BaseDao<Produto> implements ProdutoRemote {
 
     @Override
     public Produto save(Produto produto) throws Exception {
-        return save(produto, produto.getId());
+        if (produto.getId() == null) {
+            entityManager.persist(produto);
+        } else {
+            if (!entityManager.contains(produto)) {
+                if (produto.getId() == null) {
+                    throw new Exception("Erro ao atualizar os dados!");
+                }
+            }
+            produto = (Produto) entityManager.merge(produto);
+        }
+        return produto;
     }
 
     @Override
