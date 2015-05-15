@@ -15,11 +15,11 @@ public class ProdutoDAO extends BaseDao<Produto> implements ProdutoRemote {
 
     @Override
     public Produto save(Produto produto) throws Exception {
-        if (produto.getId() == null) {
+        if (produto.getId() < 1) {
             entityManager.persist(produto);
         } else {
             if (!entityManager.contains(produto)) {
-                if (produto.getId() == null) {
+                if (produto.getId() < 1) {
                     throw new Exception("Erro ao atualizar os dados!");
                 }
             }

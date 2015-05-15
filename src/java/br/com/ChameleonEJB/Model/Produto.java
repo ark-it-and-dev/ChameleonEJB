@@ -34,15 +34,15 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class Produto implements Serializable {
 
-    private static final long serialVersionUID = 6342446145368898389L;
+    private static final long serialVersionUID = 1L;
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUTO_SEQ")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUTO_SEQ")
+    private long id;
 
     private String nome;
 
-    private String preco;
+    private double preco;
 
     private String descricao;
 
@@ -56,7 +56,7 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
@@ -68,11 +68,11 @@ public class Produto implements Serializable {
         this.nome = nome;
     }
 
-    public String getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(String preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 

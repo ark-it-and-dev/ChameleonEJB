@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="ClienteWS">
+      <implementation-class>br.com.ChameleonEJB.WebService.ClienteWS</implementation-class>
+    </service>
+    <service name="PedidoWS">
+      <implementation-class>br.com.ChameleonEJB.WebService.PedidoWS</implementation-class>
+    </service>
+    <service name="ProdutoWS">
+      <implementation-class>br.com.ChameleonEJB.WebService.ProdutoWS</implementation-class>
+    </service>
+  </services>
+  <clients/>
+</jax-ws>
