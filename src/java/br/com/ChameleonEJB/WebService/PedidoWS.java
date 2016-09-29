@@ -7,8 +7,10 @@ package br.com.ChameleonEJB.WebService;
 
 import br.com.ChameleonEJB.DAO.PedidoDAO;
 import br.com.ChameleonEJB.Model.Pedido;
+import br.com.ChameleonEJB.Model.PedidoProduto;
 import br.com.ChameleonEJB.Model.Produto;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -37,15 +39,15 @@ public class PedidoWS {
             List<Pedido> listaPedidos = pedidoDAO.all();
             retorno += "\n-----Pedidos------";
             for (Pedido pedido : listaPedidos) {
-                retorno += "\nID Pedido: " + pedido.getPedido().getId();
-                retorno += "\nID Cliente: " + pedido.getPedido().getCliente().getId;
-                retorno += "\nStatus: " + pedido.getPedido().getStatus();
+                retorno += "\nID Pedido: " + pedido.getId();
+                retorno += "\nID Cliente: " + pedido.getCliente().getId();
+                retorno += "\nStatus: " + pedido.getStatus();
                 retorno += "\n-----Produtos------";
-                for (Produto produto : pedido.getListaPedidoProduto()) {
-                    retorno += "\nNome do Produto: " + produto.getNome();
+                for (PedidoProduto pedProd : pedido.getListaPedidoProduto()) {
+                    retorno += "\nNome do Produto: " + pedProd.getProduto().getNome();
                 }
                 retorno += "\n---------------";
-                retorno += "\nValor Total: R$" + pedido.getPedido().getValorTotal();
+                retorno += "\nValor Total: R$" + pedido.getValorTotal();
                 retorno += "\n\n\n";
             }
             retorno += "\n---------------";
@@ -63,15 +65,15 @@ public class PedidoWS {
             List<Pedido> listaPedidos = pedidoDAO.allOrderByPriceDesc();
             retorno += "\n-----Pedidos------";
             for (Pedido pedido : listaPedidos) {
-                retorno += "\nID Pedido: " + pedido.getPedido().getId();
-                retorno += "\nID Cliente: " + pedido.getPedido().getCliente().getId;
-                retorno += "\nStatus: " + pedido.getPedido().getStatus();
+                retorno += "\nID Pedido: " + pedido.getId();
+                retorno += "\nID Cliente: " + pedido.getCliente().getId();
+                retorno += "\nStatus: " + pedido.getStatus();
                 retorno += "\n-----Produtos------";
-                for (Produto produto : pedido.getListaPedidoProduto()) {
-                    retorno += "\nNome do Produto: " + produto.getNome();
+                for (PedidoProduto pedProd : pedido.getListaPedidoProduto()) {
+                    retorno += "\nNome do Produto: " + pedProd.getProduto().getNome();
                 }
                 retorno += "\n---------------";
-                retorno += "\nValor Total: R$" + pedido.getPedido().getValorTotal();
+                retorno += "\nValor Total: R$" + pedido.getValorTotal();
                 retorno += "\n\n\n";
             }
             retorno += "\n---------------";
@@ -89,15 +91,15 @@ public class PedidoWS {
             List<Pedido> listaPedidos = pedidoDAO.allOrderByPrice();
             retorno += "\n-----Pedidos------";
             for (Pedido pedido : listaPedidos) {
-                retorno += "\nID Pedido: " + pedido.getPedido().getId();
-                retorno += "\nID Cliente: " + pedido.getPedido().getCliente().getId;
-                retorno += "\nStatus: " + pedido.getPedido().getStatus();
+                retorno += "\nID Pedido: " + pedido.getId();
+                retorno += "\nID Cliente: " + pedido.getCliente().getId();
+                retorno += "\nStatus: " + pedido.getStatus();
                 retorno += "\n-----Produtos------";
-                for (Produto produto : pedido.getListaPedidoProduto()) {
-                    retorno += "\nNome do Produto: " + produto.getNome();
+                for (PedidoProduto pedProd : pedido.getListaPedidoProduto()) {
+                    retorno += "\nNome do Produto: " + pedProd.getProduto().getNome();
                 }
                 retorno += "\n---------------";
-                retorno += "\nValor Total: R$" + pedido.getPedido().getValorTotal();
+                retorno += "\nValor Total: R$" + pedido.getValorTotal();
                 retorno += "\n\n\n";
             }
             retorno += "\n---------------";
@@ -115,15 +117,15 @@ public class PedidoWS {
             List<Pedido> listaPedidos = pedidoDAO.allWherePriceEquals(valor);
             retorno += "\n-----Pedidos------";
             for (Pedido pedido : listaPedidos) {
-                retorno += "\nID Pedido: " + pedido.getPedido().getId();
-                retorno += "\nID Cliente: " + pedido.getPedido().getCliente().getId;
-                retorno += "\nStatus: " + pedido.getPedido().getStatus();
+                retorno += "\nID Pedido: " + pedido.getId();
+                retorno += "\nID Cliente: " + pedido.getCliente().getId();
+                retorno += "\nStatus: " + pedido.getStatus();
                 retorno += "\n-----Produtos------";
-                for (Produto produto : pedido.getListaPedidoProduto()) {
-                    retorno += "\nNome do Produto: " + produto.getNome();
+                for (PedidoProduto pedProd : pedido.getListaPedidoProduto()) {
+                    retorno += "\nNome do Produto: " + pedProd.getProduto().getNome();
                 }
                 retorno += "\n---------------";
-                retorno += "\nValor Total: R$" + pedido.getPedido().getValorTotal();
+                retorno += "\nValor Total: R$" + pedido.getValorTotal();
                 retorno += "\n\n\n";
             }
             retorno += "\n---------------";
@@ -138,18 +140,18 @@ public class PedidoWS {
         retorno = "";
 
         try {
-            List<Pedido> listaPedidos = pedidoDAO.allWherePriceEquals(valorInicio, valorFim);
+            List<Pedido> listaPedidos = pedidoDAO.allWherePriceBetween(valorInicio, valorFim);
             retorno += "\n-----Pedidos------";
             for (Pedido pedido : listaPedidos) {
-                retorno += "\nID Pedido: " + pedido.getPedido().getId();
-                retorno += "\nID Cliente: " + pedido.getPedido().getCliente().getId;
-                retorno += "\nStatus: " + pedido.getPedido().getStatus();
+                retorno += "\nID Pedido: " + pedido.getId();
+                retorno += "\nID Cliente: " + pedido.getCliente().getId();
+                retorno += "\nStatus: " + pedido.getStatus();
                 retorno += "\n-----Produtos------";
-                for (Produto produto : pedido.getListaPedidoProduto()) {
-                    retorno += "\nNome do Produto: " + produto.getNome();
+                for (PedidoProduto pedProd : pedido.getListaPedidoProduto()) {
+                    retorno += "\nNome do Produto: " + pedProd.getProduto().getNome();
                 }
                 retorno += "\n---------------";
-                retorno += "\nValor Total: R$" + pedido.getPedido().getValorTotal();
+                retorno += "\nValor Total: R$" + pedido.getValorTotal();
                 retorno += "\n\n\n";
             }
             retorno += "\n---------------";
