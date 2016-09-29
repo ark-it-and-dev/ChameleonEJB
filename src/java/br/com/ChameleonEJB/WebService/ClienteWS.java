@@ -28,7 +28,7 @@ public class ClienteWS {
 
         try {
             Cliente cliente = clienteDAO.getByEmail(email);
-            List<Endereco> listaEnderecos = clienteDAO.getListaEnderecos();
+            List<Endereco> listaEnderecos = cliente.getListaEndereco();
             retorno += "\n-----Cliente------";
             retorno += "\nID: " + cliente.getId();
             retorno += "\nNome: " + cliente.getNome();
